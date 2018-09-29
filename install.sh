@@ -2,10 +2,19 @@
 
 set -x
 
-brew install ack bash bash-completion cmake cscope curl docker-completion docker-compose-completion docker-machine-completion git glide gnupg gperf htop jq mtr node p7zip postgresql protobuf tree vim watch wget neovim
+if [ ! -e .installed_packages ]; then
+    brew install ack bash bash-completion cmake cscope curl \
+        docker-completion docker-compose-completion docker-machine-completion \
+        git glide gnupg gperf htop jq mtr node p7zip postgresql protobuf tree \
+        vim watch wget neovim && \
+        touch .installed_packages
+fi
 
-pip install neovim
-pip3 install neovim virtualenv virtualenvwrapper
+if [ ! -e .installed_pip_modules ]; then
+    pip install neovim && \ 
+        pip3 install neovim virtualenv virtualenvwrapper && \
+        touch .installed_pip_modules
+fi
 
 ln -sf $(PWD)/.vimrc ~/
 ln -sf $(PWD)/.gitconfig ~/
@@ -18,7 +27,8 @@ if [ ! -e ~/.vim ]; then
     mkdir -p  ~/.local/share/nvim/site && \
     ln -sf ~/.vim/autoload ~/.local/share/nvim/site/autoload && \
     mkdir -p  ~/.config/nvim && \
-    ln -sf ~/.vimrc ~/.config/nvim/init.vim && \
-    vim +PlugInstall +qall &&
-    nvim +PlugInstall +UpdateRemotePlugins +qall
+    ln -sf ~/.vimrc ~/.config/nvim/init.vim
 fi
+
+vim +PlugInstall +qall
+nvim +PlugInstall +UpdateRemotePlugins +qall
