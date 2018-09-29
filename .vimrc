@@ -38,7 +38,7 @@ else
         "    Plug 'roxma/vim-hug-neovim-rpc'
     endif
 endif
-
+Plug 'w0rp/ale'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
@@ -75,7 +75,11 @@ let g:go_fmt_command = "goimports"
 
 let g:deoplete#enable_at_startup = 1
 
-"--------------------------------------
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
+
+"-------------------------------------r
 "
 let mapleader=";"
 
