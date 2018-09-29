@@ -1,0 +1,22 @@
+[user]
+	name = Vadim Vlasov
+	email = v.vlasov@millionagents.com
+	signingkey = 62CFEE1BB2E676A7
+[color]
+	ui = true
+[alias]
+  l  = log --graph --full-history --pretty=format:'%C(yellow)%h%Creset%C(blue bold)%d%Creset %C(normal)%s %Creset%C(red bold)by %an %Creset%C(cyan)(%ar)%Creset'
+  ll = !git l --all
+  cn = clone
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  di = diff
+  dt = difftool
+#[url "ssh://git.aqq.me/git/"]
+#  insteadOf = work:
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
