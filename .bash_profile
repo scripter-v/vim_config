@@ -25,6 +25,7 @@ export PATH="/usr/local/opt/gettext/bin:/usr/local/opt/openssl/bin:/usr/local/op
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export GOPATH=~/go
+export PGTZ=Europe/Moscow
 
 PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
