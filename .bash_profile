@@ -26,7 +26,7 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export GOPATH=~/go
 
-PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\033[1;36m\]\W\[\033[00m\] \$ '
+PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion

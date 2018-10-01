@@ -18,6 +18,10 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
+au FileType proto set shiftwidth=2
+au FileType proto set softtabstop=2
+au FileType proto set tabstop=2
+
 set autoindent
 set smartindent
 
@@ -92,7 +96,7 @@ endif
 
 au FileType go nnoremap <Leader>; :GoMetaLinter<CR>
 au FileType go nnoremap <Leader>c :ccl<CR>
-au FileType go nnoremap ,d :GoRename<CR>
+au FileType go nnoremap <leader>d :GoRename<CR>
 nnoremap q<right> <C-w><right>
 nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
