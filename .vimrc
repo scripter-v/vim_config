@@ -13,6 +13,8 @@ set mouse=a
 set mousemodel=popup
 set mousehide
 
+set nowrap
+
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -81,6 +83,14 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:ycm_confirm_extra_conf = 0
 
 let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
 
 let g:deoplete#enable_at_startup = 1
 
