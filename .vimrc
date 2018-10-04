@@ -51,7 +51,7 @@ endif
 "Plug 'vim-syntastic/syntastic'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'tpope/vim-sensible'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/Arduino-syntax-file'
@@ -69,6 +69,7 @@ endif
 
 Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -100,6 +101,9 @@ let g:deoplete#enable_at_startup = 1
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:airline#extensions#ale#enabled = 1
+
+let g:autopep8_on_save = 1
+let g:autopep8_disable_show_diff=1
 
 "-------------------------------------r
 "

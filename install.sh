@@ -11,7 +11,7 @@ if [ ! -e .installed_packages ]; then
 fi
 
 if [ ! -e .installed_pip_modules ]; then
-    pip install neovim && \ 
+    pip install neovim autopep8 jedi && \
         pip3 install neovim virtualenv virtualenvwrapper && \
         touch .installed_pip_modules
 fi
