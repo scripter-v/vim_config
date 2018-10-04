@@ -48,22 +48,25 @@ else
         "    Plug 'roxma/vim-hug-neovim-rpc'
     endif
 endif
+"Plug 'vim-syntastic/syntastic'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'tpope/vim-sensible'
-Plug 'junegunn/seoul256.vim'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/Arduino-syntax-file'
-Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
+if has('nvim')
+    Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+else
+    Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+endif
+
 Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
 

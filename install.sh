@@ -26,6 +26,7 @@ if [ ! -e ~/.vim ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
     mkdir -p  ~/.local/share/nvim/site && \
     ln -sf ~/.vim/autoload ~/.local/share/nvim/site/autoload && \
+    ln -sf ~/.vim/plugged ~/.config/nvim/plugged && \
     mkdir -p  ~/.config/nvim && \
     ln -sf ~/.vimrc ~/.config/nvim/init.vim
 fi
