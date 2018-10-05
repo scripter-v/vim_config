@@ -7,6 +7,7 @@ if [ ! -e .installed_packages ]; then
         docker-completion docker-compose-completion docker-machine-completion \
         git glide gnupg gperf htop jq mtr node p7zip postgresql protobuf tree \
         vim watch wget neovim && \
+        brew cask install wireshark && \
         touch .installed_packages
 fi
 

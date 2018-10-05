@@ -24,6 +24,10 @@ au FileType proto set shiftwidth=2
 au FileType proto set softtabstop=2
 au FileType proto set tabstop=2
 
+au FileType jade set shiftwidth=2
+au FileType jade set softtabstop=2
+au FileType jade set tabstop=2
+
 au FileType ruby set shiftwidth=2
 au FileType ruby set softtabstop=2
 au FileType ruby set tabstop=2
