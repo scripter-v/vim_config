@@ -46,13 +46,12 @@ if useycmplugin
 else
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        "else
-        "    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        "    Plug 'roxma/nvim-yarp'
-        "    Plug 'roxma/vim-hug-neovim-rpc'
+    else
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
     endif
 endif
-"Plug 'vim-syntastic/syntastic'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -66,9 +65,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 if has('nvim')
-    Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+    Plug 'mdempsky/gocode', { 'rtp': 'nvim' }
 else
-    Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+    Plug 'mdempsky/gocode', { 'rtp': 'vim' }
 endif
 
 Plug 'tell-k/vim-autopep8'
@@ -119,6 +118,8 @@ if has('nvim')
 else
     au FileType go nnoremap <Leader>r :GoRun<CR>
 endif
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 au FileType go nnoremap <Leader>; :GoMetaLinter<CR>
 au FileType go nnoremap <Leader>c :ccl<CR>
