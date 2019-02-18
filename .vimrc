@@ -32,6 +32,10 @@ au FileType ruby set shiftwidth=2
 au FileType ruby set softtabstop=2
 au FileType ruby set tabstop=2
 
+au FileType yaml set shiftwidth=2
+au FileType yaml set softtabstop=2
+au FileType yaml set tabstop=2
+
 set autoindent
 set smartindent
 

@@ -23,9 +23,14 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 export PATH="/usr/local/opt/gettext/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:/usr/local/opt/sqlite/bin:/usr/local/sbin:$PATH"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export GOPATH=~/go
 export PGTZ=Europe/Moscow
+
+if [ -f /usr/local/opt/ruby/lib/pkgconfig ]; then
+    export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+fi
 
 PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
@@ -41,3 +46,10 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 export GPG_TTY=$(tty)
+export AWS_SDK_LOAD_CONFIG=true
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/Users/scripter/yandex-cloud/path.bash.inc' ]; then source '/Users/scripter/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/Users/scripter/yandex-cloud/completion.bash.inc' ]; then source '/Users/scripter/yandex-cloud/completion.bash.inc'; fi
