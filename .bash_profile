@@ -11,7 +11,7 @@ HISTFILESIZE=20000
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 alias ll="ls -lah"
-alias lt="ls -lt"
+alias lt="ls -ltr"
 alias df="df -h"
 alias mtr="sudo mtr"
 alias vim="nvim"
