@@ -11,6 +11,7 @@ HISTFILESIZE=20000
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 alias ll="ls -lah"
+alias lt="ls -lt"
 alias df="df -h"
 alias mtr="sudo mtr"
 alias vim="nvim"
@@ -53,3 +54,13 @@ if [ -f '/Users/scripter/yandex-cloud/path.bash.inc' ]; then source '/Users/scri
 
 # The next line enables shell command completion for yc.
 if [ -f '/Users/scripter/yandex-cloud/completion.bash.inc' ]; then source '/Users/scripter/yandex-cloud/completion.bash.inc'; fi
+
+date2unixtime() {
+    date '+%s'
+}
+
+unixtime2date() {
+    if [ "$#" -eq 1 ]; then
+        date -r "$1" '+%F %T%z'
+    fi
+}
