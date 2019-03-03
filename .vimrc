@@ -104,8 +104,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
-let g:go_metalinter_command="gometalinter ./..."
-
 let g:deoplete#enable_at_startup = 1
 
 let g:ale_sign_error = '⤫'
@@ -128,7 +126,10 @@ endif
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-au FileType go nnoremap <Leader>; :GoMetaLinter<CR>
+let g:gometalinter_cwd=getcwd()
+let g:go_metalinter_command="gometalinter"
+au FileType go nnoremap <Leader>; :execute ':GoMetaLinter ' . fnameescape(g:gometalinter_cwd) . '/...'<CR>
+
 au FileType go nnoremap <Leader>c :ccl<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
 nnoremap q<right> <C-w><right>
@@ -136,3 +137,4 @@ nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
 nnoremap <C-b> :make<CR>
 nnoremap <C-n> :cn<CR>
+nnoremap <C-j> :cp<CR>

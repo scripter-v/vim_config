@@ -49,6 +49,10 @@ fi
 export GPG_TTY=$(tty)
 export AWS_SDK_LOAD_CONFIG=true
 
+if [ -f /usr/local/bin/aws_completer ]; then
+    complete -C '/usr/local/bin/aws_completer' aws
+fi
+
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '/Users/scripter/yandex-cloud/path.bash.inc' ]; then source '/Users/scripter/yandex-cloud/path.bash.inc'; fi
 
