@@ -6,7 +6,7 @@ if [ ! -e .installed_packages ]; then
     brew install ack bash bash-completion cmake cscope curl \
         docker-completion docker-compose-completion docker-machine-completion \
         git glide gnupg gperf htop jq mtr node p7zip postgresql protobuf tree \
-        vim watch wget neovim && \
+        vim watch wget neovim the_silver_searcher && \
         brew cask install wireshark && \
         touch .installed_packages
 fi
