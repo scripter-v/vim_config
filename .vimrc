@@ -48,24 +48,14 @@ set completeopt+=noinsert
 " deoplete.nvim recommend
 set completeopt+=noselect
 
-let useycmplugin=0
-
 call plug#begin('~/.vim/plugged')
 
-if useycmplugin
-    Plug 'Valloric/YouCompleteMe'
-else
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+    let g:deoplete#enable_at_startup = 1
 endif
-let g:deoplete#enable_at_startup = 1
 
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
@@ -97,6 +87,7 @@ let g:localvimrc_ask = 0
 let g:neosolarized_contrast = "high"
 let g:neosolarized_visibility = "high"
 colorscheme NeoSolarized
+highlight Comment cterm=italic
 
 let g:UltiSnipsExpandTrigger="<c-a>"
 
