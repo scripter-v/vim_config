@@ -36,10 +36,17 @@ au FileType yaml set shiftwidth=2
 au FileType yaml set softtabstop=2
 au FileType yaml set tabstop=2
 
+au FileType go set wildignore+=*/vendor/* 
+
 set autoindent
 set smartindent
 
 set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+
+" neocomplete like
+set completeopt+=noinsert
+" deoplete.nvim recommend
+set completeopt+=noselect
 
 let useycmplugin=0
 
@@ -51,14 +58,16 @@ else
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     else
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        Plug 'Shougo/deoplete.nvim'
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
 endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
-Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'tpope/vim-sensible'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/Arduino-syntax-file'
@@ -69,9 +78,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 if has('nvim')
-    Plug 'mdempsky/gocode', { 'rtp': 'nvim' }
+    Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 else
-    Plug 'mdempsky/gocode', { 'rtp': 'vim' }
+    Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 endif
 
 Plug 'tell-k/vim-autopep8'
@@ -103,8 +112,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
-
-let g:deoplete#enable_at_startup = 1
 
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
