@@ -56,6 +56,8 @@ if has('nvim')
     let g:deoplete#enable_at_startup = 1
 endif
 
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
@@ -88,11 +90,8 @@ let g:localvimrc_ask = 0
 let g:neosolarized_contrast = "high"
 let g:neosolarized_visibility = "high"
 colorscheme NeoSolarized
-highlight Comment cterm=italic
 
 let g:UltiSnipsExpandTrigger="<c-a>"
-
-let g:ycm_confirm_extra_conf = 0
 
 let g:go_fmt_command = "goimports"
 
@@ -136,6 +135,8 @@ au FileType go nnoremap <Leader>; :execute ':GoMetaLinter ' . fnameescape(g:gome
 au FileType go nnoremap <Leader>c :ccl<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
 au FileType go nnoremap <leader>s :Ack --go --ignore-dir vendor 
+
+nnoremap <Leader>a :Ag<CR>
 nnoremap q<right> <C-w><right>
 nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
