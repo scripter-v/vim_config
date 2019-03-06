@@ -56,6 +56,7 @@ if has('nvim')
     let g:deoplete#enable_at_startup = 1
 endif
 
+Plug 'mileszs/ack.vim'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
@@ -111,6 +112,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:autopep8_on_save = 1
 let g:autopep8_disable_show_diff=1
 
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+
 "-------------------------------------r
 "
 let mapleader=";"
@@ -130,6 +135,7 @@ au FileType go nnoremap <Leader>; :execute ':GoMetaLinter ' . fnameescape(g:gome
 
 au FileType go nnoremap <Leader>c :ccl<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
+au FileType go nnoremap <leader>s :Ack --go --ignore-dir vendor 
 nnoremap q<right> <C-w><right>
 nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
