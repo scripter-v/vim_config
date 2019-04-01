@@ -106,6 +106,8 @@ let g:go_highlight_types = 1
 
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 let g:airline#extensions#ale#enabled = 1
 
 let g:autopep8_on_save = 1
