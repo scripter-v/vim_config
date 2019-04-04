@@ -60,6 +60,18 @@ if [ -f '/Users/scripter/yandex-cloud/path.bash.inc' ]; then source '/Users/scri
 # The next line enables shell command completion for yc.
 if [ -f '/Users/scripter/yandex-cloud/completion.bash.inc' ]; then source '/Users/scripter/yandex-cloud/completion.bash.inc'; fi
 
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc' ]; then
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+fi
+
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc' ]; then
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+fi
+
+if [ -f ~/.gcloud/credentials.json ]; then
+    export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
+fi
+
 date2unixtime() {
     date '+%s'
 }
