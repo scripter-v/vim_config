@@ -16,6 +16,7 @@ alias df="df -h"
 alias mtr="sudo mtr"
 alias vim="nvim"
 alias gogo="cd ~/go/src/github.com/"
+alias agv='ag --go --ignore-dir vendor'
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

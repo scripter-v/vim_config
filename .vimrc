@@ -48,16 +48,13 @@ set completeopt+=noinsert
 " deoplete.nvim recommend
 set completeopt+=noselect
 
+
 call plug#begin('~/.vim/plugged')
 
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-    let g:deoplete#enable_at_startup = 1
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
@@ -68,22 +65,22 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-
-if has('nvim')
-    Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-else
-    Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-endif
-
 Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
+if has('nvim')
+    call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+endif
+
 "-------------------------------------
 "
+let g:deoplete#enable_at_startup = 1
+
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 
@@ -94,6 +91,8 @@ colorscheme NeoSolarized
 let g:UltiSnipsExpandTrigger="<c-a>"
 
 let g:go_fmt_command = "goimports"
+
+let g:go_def_mode='gopls'
 
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
@@ -139,10 +138,10 @@ au FileType go nnoremap <Leader>c :ccl<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
 au FileType go nnoremap <leader>s :Ack --go --ignore-dir vendor 
 
-nnoremap <Leader>a :Ag<CR>
 nnoremap q<right> <C-w><right>
 nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
+nnoremap <Leader>e :TagbarToggle<CR>
 nnoremap <C-b> :make<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-j> :cp<CR>
