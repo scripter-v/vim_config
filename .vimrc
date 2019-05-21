@@ -43,16 +43,10 @@ set smartindent
 
 set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
 
-" neocomplete like
-set completeopt+=noinsert
-" deoplete.nvim recommend
-set completeopt+=noselect
-
-
 call plug#begin('~/.vim/plugged')
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
 Plug 'mileszs/ack.vim'
@@ -91,8 +85,6 @@ colorscheme NeoSolarized
 let g:UltiSnipsExpandTrigger="<c-a>"
 
 let g:go_fmt_command = "goimports"
-
-let g:go_def_mode='gopls'
 
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
@@ -143,5 +135,24 @@ nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
 nnoremap <Leader>e :TagbarToggle<CR>
 nnoremap <C-b> :make<CR>
-nnoremap <C-n> :cn<CR>
-nnoremap <C-j> :cp<CR>
+
+nnoremap <C-n> :NextError<CR>
+nnoremap <C-j> :PrevError<CR>
+
+com! -bar NextError  call s:GoForError("next")
+com! -bar PrevError  call s:GoForError("previous")
+
+func! s:GoForError(partcmd)
+    try
+        try
+            exec "l". a:partcmd
+        catch /:E776:/
+            " No location list
+            exec "c". a:partcmd
+        endtry
+    catch
+        echohl ErrorMsg
+        echomsg matchstr(v:exception, ':\zs.*')
+        echohl None
+    endtry
+endfunc
