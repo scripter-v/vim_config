@@ -64,6 +64,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -97,6 +98,20 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+
+"https://github.com/deoplete-plugins/deoplete-jedi/issues/35#issuecomment-281791696
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+let g:jedi#goto_definitions_command = '<C-]>'  " dynamically done for ft=python.
+let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
+let g:jedi#rename_command = '<Leader>d'
+let g:jedi#usages_command = '<Leader>gu'
+let g:jedi#completions_enabled = 0
+let g:jedi#smart_auto_mappings = 1
+
+" Unite/ref and pydoc are more useful.
+let g:jedi#documentation_command = 'K'
+let g:jedi#auto_close_doc = 1
 
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
