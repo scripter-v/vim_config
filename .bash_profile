@@ -6,7 +6,7 @@ case $- in
 esac
 
 HISTSIZE=10000
-HISTFILESIZE=20000
+HISTFILESIZE=100000
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
@@ -26,8 +26,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH="/usr/local/opt/gettext/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:/usr/local/opt/sqlite/bin:/usr/local/sbin:$PATH"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/watch/bin:$PATH"
 export GOPATH=~/go
 export PGTZ=Europe/Moscow
 
@@ -72,6 +74,8 @@ fi
 if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
 fi
+
+source <(doctl completion bash)
 
 date2unixtime() {
     date '+%s'

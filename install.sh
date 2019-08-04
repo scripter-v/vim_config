@@ -3,18 +3,20 @@
 set -x
 
 if [ ! -e .installed_packages ]; then
-    brew install ack bash bash-completion cmake cscope curl \
+    brew install \
+        ansible automake awscli bash bash-completion cmake curl \
         docker-completion docker-compose-completion docker-machine-completion \
-        git glide gnupg gperf htop jq mtr node p7zip postgresql protobuf tree \
-        vim watch wget neovim the_silver_searcher fzf && \
-        brew cask install wireshark && \
-        touch .installed_packages
+        doctl fzf git glide gnupg golangci/tap/golangci-lint grpc \
+        heroku/brew/heroku htop httpstat jq kubernetes-cli md5sha1sum \
+        mtr neovim nmap p7zip postgresql pyenv-virtualenvwrapper \
+        telnet the_silver_searcher tree vim watch wget yarn yarn-completion zsh \
+        && touch .installed_packages
 fi
 
 if [ ! -e .installed_pip_modules ]; then
-    pip install neovim autopep8 jedi && \
-        pip3 install neovim virtualenv virtualenvwrapper && \
-        touch .installed_pip_modules
+    pip install pynvim jedi \
+        && /usr/local/opt/awscli/libexec/bin/pip install awscli-plugin-endpoint \
+        && touch .installed_pip_modules
 fi
 
 ln -sf $(PWD)/.vimrc ~/
@@ -34,3 +36,5 @@ fi
 
 vim +PlugInstall +qall
 nvim +PlugInstall +UpdateRemotePlugins +qall
+
+echo "To install yandex cloud cli visit https://cloud.yandex.ru/docs/cli/quickstart"
