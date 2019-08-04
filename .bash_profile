@@ -39,16 +39,9 @@ fi
 
 PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-# virtualenv
-export WORKON_HOME=~/virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
 export GPG_TTY=$(tty)
 export AWS_SDK_LOAD_CONFIG=true
@@ -73,6 +66,10 @@ fi
 
 if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
+fi
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
 
 source <(doctl completion bash)
