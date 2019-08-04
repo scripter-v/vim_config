@@ -41,10 +41,16 @@ PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-
 export GPG_TTY=$(tty)
 export AWS_SDK_LOAD_CONFIG=true
+
+# virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
+fi
 
 if [ -f /usr/local/bin/aws_completer ]; then
     complete -C '/usr/local/bin/aws_completer' aws
@@ -66,10 +72,6 @@ fi
 
 if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
-fi
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
 fi
 
 source <(doctl completion bash)
