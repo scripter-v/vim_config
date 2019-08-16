@@ -130,12 +130,12 @@ endif
 "
 let mapleader=";"
 
-if has('nvim')
-    :tnoremap <Esc> <C-\><C-n>
-    au FileType go nnoremap <Leader>r :GoRun<CR><C-w><left>:startinsert<CR>
-else
+"if has('nvim')
+"    :tnoremap <Esc> <C-\><C-n>
+"    au FileType go nnoremap <Leader>r :GoRun<CR><C-w><left>:startinsert<CR>
+"else
     au FileType go nnoremap <Leader>r :GoRun<CR>
-endif
+"endif
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 

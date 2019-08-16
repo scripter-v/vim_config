@@ -10,7 +10,7 @@ if [ ! -e .installed_packages ]; then
         heroku/brew/heroku htop httpstat jq kubernetes-cli md5sha1sum \
         mtr neovim nmap p7zip postgresql pyenv-virtualenvwrapper \
         telnet the_silver_searcher tree vim watch wget yarn yarn-completion zsh \
-        && brew cask install wireshark firefox java google-cloud-sdk \
+        && brew cask install wireshark firefox java google-cloud-sdk racket \
         && touch .installed_packages
 fi
 
