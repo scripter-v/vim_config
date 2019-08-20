@@ -11,7 +11,7 @@ if [ ! -e .installed_packages ]; then
         mtr neovim nmap p7zip postgresql pyenv-virtualenvwrapper \
         telnet the_silver_searcher tree vim watch wget yarn yarn-completion zsh \
         && brew cask install wireshark firefox java google-cloud-sdk racket \
-        megasync iterm2 yandex-disk \
+        megasync iterm2 yandex-disk google-chrome \
         && touch .installed_packages
 fi
 
