@@ -11,7 +11,7 @@ if [ ! -e .installed_packages ]; then
         mtr neovim nmap p7zip postgresql pyenv-virtualenvwrapper \
         telnet the_silver_searcher tree vim watch wget yarn yarn-completion zsh \
         && brew cask install wireshark firefox java google-cloud-sdk racket \
-        megasync iterm2 yandex-disk google-chrome \
+        megasync iterm2 yandex-disk google-chrome macpass \
         && touch .installed_packages
 fi
 
@@ -30,9 +30,9 @@ if [ ! -e ~/.vim ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
     mkdir -p  ~/.local/share/nvim/site && \
+    mkdir -p  ~/.config/nvim && \
     ln -sf ~/.vim/autoload ~/.local/share/nvim/site/autoload && \
     ln -sf ~/.vim/plugged ~/.config/nvim/plugged && \
-    mkdir -p  ~/.config/nvim && \
     ln -sf ~/.vimrc ~/.config/nvim/init.vim
 fi
 

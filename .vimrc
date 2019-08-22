@@ -1,6 +1,7 @@
 set t_Co=256 " ignored by neovim
 if !has('nvim')
     set term=xterm-256color
+    set fillchars+=vert:│
 endif
 
 set termguicolors
@@ -47,6 +48,10 @@ call plug#begin('~/.vim/plugged')
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 Plug 'mileszs/ack.vim'
@@ -68,9 +73,7 @@ Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
-if has('nvim')
-    call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-endif
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 "-------------------------------------
 "
