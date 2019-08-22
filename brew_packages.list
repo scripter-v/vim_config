@@ -1,8 +1,7 @@
 ansible
 automake
 awscli
-bash
-bash-completion
+bash-completion@2
 cmake
 cocoapods
 curl

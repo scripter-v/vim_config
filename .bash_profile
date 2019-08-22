@@ -39,6 +39,8 @@ fi
 
 PS1=' \[\033[1;33m\]\u\[\033[00m\]@\h:\[\033[1;36m\]\W\[\033[00m\] \$ '
 
+#If you'd like to use existing homebrew v1 completions, add the following before the previous line:
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 export GPG_TTY=$(tty)
@@ -74,7 +76,9 @@ if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
 fi
 
-source <(doctl completion bash)
+if type doctl > /dev/null; then
+    source <(doctl completion bash)
+fi
 
 date2unixtime() {
     date '+%s'
