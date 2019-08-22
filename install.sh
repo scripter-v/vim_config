@@ -3,22 +3,23 @@
 set -x
 
 if [ ! -e .installed_packages ]; then
-    brew install \
-        ansible automake awscli bash bash-completion cmake curl \
-        docker-completion docker-compose-completion docker-machine-completion \
-        doctl fzf git glide gnupg golangci/tap/golangci-lint grpc \
-        heroku/brew/heroku htop httpstat jq kubernetes-cli md5sha1sum \
-        mtr neovim nmap p7zip postgresql pyenv-virtualenvwrapper \
-        telnet the_silver_searcher tree vim watch wget yarn yarn-completion zsh \
-        && brew cask install wireshark firefox java google-cloud-sdk racket \
-        megasync iterm2 yandex-disk google-chrome macpass \
+    cat brew_packages.list | xargs brew install \
         && touch .installed_packages
 fi
 
+if [ ! -e .installed_cask_packages ]; then
+    cat brew_cask_packages.list | xargs brew cask install \
+        && touch .installed_cask_packages
+fi
+
 if [ ! -e .installed_pip_modules ]; then
-    pip install pynvim jedi \
-        && /usr/local/opt/awscli/libexec/bin/pip install awscli-plugin-endpoint \
+    cat pip_modules.list | xargs pip install \
         && touch .installed_pip_modules
+fi
+
+if [ ! -e .installed_aws_plugin ]; then
+    /usr/local/opt/awscli/libexec/bin/pip install awscli-plugin-endpoint \
+        && touch .installed_aws_plugin
 fi
 
 ln -sf $(PWD)/.vimrc ~/
