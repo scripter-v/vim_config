@@ -90,6 +90,7 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
 
@@ -120,6 +121,7 @@ let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 0
+
 let g:airline#extensions#ale#enabled = 1
 
 let g:autopep8_on_save = 1
