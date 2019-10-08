@@ -4,6 +4,7 @@ awscli
 bash-completion@2
 cmake
 cocoapods
+ctags
 curl
 docker-completion
 docker-compose-completion
@@ -13,7 +14,6 @@ fzf
 git
 glide
 gnupg
-golangci/tap/golangci-lint
 grpc
 heroku/brew/heroku
 htop
@@ -26,6 +26,7 @@ mtr
 neovim
 nmap
 p7zip
+pkg-config
 postgresql
 protoc-gen-go
 telnet
