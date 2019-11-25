@@ -54,6 +54,7 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+Plug 'stephpy/vim-yaml'
 Plug 'mileszs/ack.vim'
 Plug 'jez/vim-jade'
 Plug 'w0rp/ale'
@@ -76,7 +77,7 @@ call plug#end()
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 "-------------------------------------
-"
+
 let g:deoplete#enable_at_startup = 1
 
 let g:localvimrc_sandbox = 0
@@ -91,6 +92,7 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
 
@@ -121,6 +123,9 @@ let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 0
+let g:ale_linters = {
+	\ 'go': ['gopls'],
+	\}
 
 let g:airline#extensions#ale#enabled = 1
 
