@@ -1,0 +1,5 @@
+\setenv PAGER 'less -S'
+\timing
+\set VERBOSITY verbose
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups

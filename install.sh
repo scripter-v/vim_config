@@ -22,6 +22,7 @@ if [ ! -e .installed_aws_plugin ]; then
         && touch .installed_aws_plugin
 fi
 
+ln -sf $(PWD)/.psqlrc ~/
 ln -sf $(PWD)/.vimrc ~/
 ln -sf $(PWD)/.gitconfig ~/
 ln -sf $(PWD)/.bash_profile ~/
