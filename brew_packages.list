@@ -4,12 +4,14 @@ awscli
 bash-completion@2
 cmake
 cocoapods
+colordiff
 ctags
 curl
 docker-completion
 docker-compose-completion
 docker-machine-completion
 doctl
+exiftool
 fzf
 git
 glide
@@ -22,6 +24,7 @@ ipython
 jq
 kubernetes-cli
 md5sha1sum
+mdcat
 mtr
 neovim
 nmap
