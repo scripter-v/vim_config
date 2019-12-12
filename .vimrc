@@ -93,6 +93,7 @@ let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
+let g:go_rename_command = 'gopls'
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
 
@@ -149,7 +150,7 @@ let mapleader=";"
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-au FileType go nnoremap <leader>; :GoMetaLinter<CR>
+au FileType go nnoremap <leader>; :GoMetaLinter --exclude-use-default=true<CR>
 
 au FileType go nnoremap <Leader>c :ccl<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
