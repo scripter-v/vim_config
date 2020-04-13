@@ -30,6 +30,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/watch/bin:$PATH"
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
 
 export GOPATH=~/go
 export GOPRIVATE=github.com/mlnagents

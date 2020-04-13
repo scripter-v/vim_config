@@ -6,6 +6,7 @@ endif
 
 set termguicolors
 set background=dark
+set clipboard+=unnamedplus
 
 set hidden
 set nu
@@ -77,6 +78,7 @@ call plug#end()
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 "-------------------------------------
+let g:omni_sql_no_default_maps = 1
 
 let g:deoplete#enable_at_startup = 1
 

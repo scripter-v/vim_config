@@ -3,3 +3,5 @@
 \set VERBOSITY verbose
 \set HISTFILE ~/.psql_history- :DBNAME
 \set HISTCONTROL ignoredups
+\set PROMPT1 '(%[%033[0;32m%]%n%[%033[0;34m%]@%m:%>%[%033[0m%]) %`date +%H:%M:%S`\n%[%033[1;36m%]%/%[%033[0m%]=%x%# '
+\set PROMPT2 '%[%033[1;36m%]%/%[%033[0m%]-%x%# '
