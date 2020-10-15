@@ -26,7 +26,8 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH="/usr/local/opt/gettext/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:/usr/local/opt/sqlite/bin:/usr/local/sbin:$PATH"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/watch/bin:$PATH"
@@ -53,6 +54,7 @@ export AWS_SDK_LOAD_CONFIG=true
 # virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.8/bin/python3
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
     source /usr/local/bin/virtualenvwrapper_lazy.sh
@@ -96,3 +98,6 @@ unixtime2date() {
 
 # heroku autocomplete setup
 HEROKU_AC_BASH_SETUP_PATH=/Users/scripter/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
+
+# The next line updates PATH for Yandex Cloud YDB CLI.
+if [ -f '/Users/scripter/ydb/path.bash.inc' ]; then source '/Users/scripter/ydb/path.bash.inc'; fi

@@ -54,11 +54,12 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
 Plug 'stephpy/vim-yaml'
 Plug 'mileszs/ack.vim'
 Plug 'jez/vim-jade'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-sensible'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/Arduino-syntax-file'
@@ -70,17 +71,16 @@ Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
+"Plug 'deoplete-plugins/deoplete-jedi'
+"Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+"call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 "-------------------------------------
 let g:omni_sql_no_default_maps = 1
 
-let g:deoplete#enable_at_startup = 1
 
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
