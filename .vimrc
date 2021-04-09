@@ -4,6 +4,8 @@ if !has('nvim')
     set fillchars+=vert:│
 endif
 
+set exrc
+
 set termguicolors
 set background=dark
 set clipboard+=unnamedplus
@@ -100,13 +102,14 @@ let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled=[]
 
 let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
+"let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_types = 1
+let g:go_highlight_structs = 0
+let g:go_highlight_operators = 0
+let g:go_highlight_interfaces = 0
 
 "https://github.com/deoplete-plugins/deoplete-jedi/issues/35#issuecomment-281791696
 let g:jedi#auto_vim_configuration = 0
@@ -149,6 +152,7 @@ let mapleader=";"
 "else
     au FileType go nnoremap <Leader>r :GoRun<CR>
 "endif
+au FileType go nnoremap <Leader>t :GoTest<CR>
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
