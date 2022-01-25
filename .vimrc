@@ -60,8 +60,8 @@ let g:deoplete#enable_at_startup = 1
 
 Plug 'stephpy/vim-yaml'
 Plug 'mileszs/ack.vim'
-Plug 'jez/vim-jade'
 Plug 'dense-analysis/ale'
+Plug 'bufbuild/vim-buf'
 Plug 'tpope/vim-sensible'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/Arduino-syntax-file'
@@ -69,20 +69,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-"Plug 'deoplete-plugins/deoplete-jedi'
-"Plug 'davidhalter/jedi-vim'
+Plug 'junegunn/fzf',
+Plug 'junegunn/fzf.vim'
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
-"call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-
 "-------------------------------------
 let g:omni_sql_no_default_maps = 1
-
 
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
@@ -93,7 +90,8 @@ colorscheme NeoSolarized
 
 let g:UltiSnipsExpandTrigger="<c-a>"
 
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gopls"
+let g:go_gopls_gofumpt=1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
@@ -111,68 +109,55 @@ let g:go_highlight_structs = 0
 let g:go_highlight_operators = 0
 let g:go_highlight_interfaces = 0
 
-"https://github.com/deoplete-plugins/deoplete-jedi/issues/35#issuecomment-281791696
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-let g:jedi#goto_definitions_command = '<C-]>'  " dynamically done for ft=python.
-let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
-let g:jedi#rename_command = '<Leader>d'
-let g:jedi#usages_command = '<Leader>gu'
-let g:jedi#completions_enabled = 0
-let g:jedi#smart_auto_mappings = 1
-
-" Unite/ref and pydoc are more useful.
-let g:jedi#documentation_command = 'K'
-let g:jedi#auto_close_doc = 1
-
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 0
 let g:ale_linters = {
 	\ 'go': ['gopls'],
+    \ 'proto': ['buf-lint',],
+    \ 'sh': [''],
+    \ 'cpp': [''],
 	\}
 
 let g:airline#extensions#ale#enabled = 1
-
-let g:autopep8_on_save = 1
-let g:autopep8_disable_show_diff=1
 
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 
-"-------------------------------------r
-"
-let mapleader=";"
+"-------------------------------------
 
-"if has('nvim')
-"    :tnoremap <Esc> <C-\><C-n>
-"    au FileType go nnoremap <Leader>r :GoRun<CR><C-w><left>:startinsert<CR>
-"else
-    au FileType go nnoremap <Leader>r :GoRun<CR>
-"endif
-au FileType go nnoremap <Leader>t :GoTest<CR>
+let mapleader=";"
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-au FileType go nnoremap <leader>; :GoMetaLinter --exclude-use-default=true<CR>
-
-au FileType go nnoremap <Leader>c :ccl<CR>
+au FileType go nnoremap <leader>; :GoMetaLinter<CR>
 au FileType go nnoremap <leader>d :GoRename<CR>
+au FileType go nnoremap <Leader>r :GoRun<CR>
+au FileType go nnoremap <Leader>t :GoTest<CR>
+
 au FileType go nnoremap <leader>s :Ack --go --ignore-dir vendor 
 
 nnoremap q<right> <C-w><right>
 nnoremap q<left> <C-w><left>
 nnoremap <Leader>q :NERDTreeToggle<CR>
 nnoremap <Leader>e :TagbarToggle<CR>
+nnoremap <Leader>c :cclose<CR>
 nnoremap <C-b> :make<CR>
+
+augroup vimrcQfClose
+    autocmd!
+    autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
 
 nnoremap <C-n> :NextError<CR>
 nnoremap <C-j> :PrevError<CR>
 
 com! -bar NextError  call s:GoForError("next")
 com! -bar PrevError  call s:GoForError("previous")
+
+command! -nargs=1 -bang Mdfind call fzf#run(fzf#wrap( {'source': 'mdfind <q-args>', 'options': '-m'}, <bang>0))
 
 func! s:GoForError(partcmd)
     try
@@ -188,3 +173,68 @@ func! s:GoForError(partcmd)
         echohl None
     endtry
 endfunc
+
+xmap <silent> . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @" . nr2char(getchar())
+endfunction
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.yamlls.setup{}
+
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright', 'clangd', 'vimls', 'bashls', 'sumneko_lua', 'yamlls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+EOF
