@@ -26,15 +26,17 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH="/usr/local/opt/gettext/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:/usr/local/opt/sqlite/bin:/usr/local/sbin:$PATH"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:~/go/bin
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/python/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/watch/bin:$PATH"
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+export EDITOR=nvim
 
 export GOPATH=~/go
-export GOPRIVATE=github.com/mlnagents
 
 export PGTZ=Europe/Moscow
 
@@ -53,8 +55,7 @@ export AWS_SDK_LOAD_CONFIG=true
 
 # virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.8/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/bin/python3
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
     source /usr/local/bin/virtualenvwrapper_lazy.sh
