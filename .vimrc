@@ -182,6 +182,8 @@ function! ExecuteMacroOverVisualRange()
     execute ":'<,'>normal @" . nr2char(getchar())
 endfunction
 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.vimls.setup{}
